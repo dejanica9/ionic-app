@@ -33,7 +33,7 @@
             [checked]="sub.result !==null &&sub.result.completed===true" class="checkbox-container"
             (ionChange)="markAsCompleted(sub, $event)" color="danger">
           </ion-checkbox>
-          <ion-icon class="marg" *ngIf="sub.result!==null&& sub.result.na===true" class="redd" name="remove-circle">
+          <ion-icon class="marg redd" *ngIf="sub.result!==null&& sub.result.na===true" name="remove-circle">
 
           </ion-icon>
 
@@ -92,19 +92,22 @@
 
         <ion-item-options side="end">
 
-          <button ion-button class="dialogue" (click)="noteDialog(sub)">
+          <button ion-button class="dialogue"
+            (click)="noteDialog(sub)">
             <ion-icon class="bubble" name="chatbubble-outline">
             </ion-icon>
             Note
           </button>
 
-          <button (click)="markAsNA(sub)" ion-button class="removecircle">
+          <button (click)="markAsNA(sub)" ion-button
+            class="removecircle">
             <ion-icon class="na-na" name="remove-circle"></ion-icon>
             N/A
           </button>
 
 
-          <button [routerLink]="['/subtask-settings/'+ sub.id]" ion-button class="settings-a">
+          <button [routerLink]="['/subtask-settings/'+ sub.id]" ion-button
+            class="settings-a">
             <ion-icon class="let" name="settings"></ion-icon>
             Settings
           </button>
