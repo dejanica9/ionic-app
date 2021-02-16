@@ -1,3 +1,4 @@
+import { DataService } from './services/data.service';
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
@@ -13,7 +14,8 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private dataService: DataService
   ) {
     this.initializeApp();
   }
@@ -23,5 +25,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    
+    localStorage.setItem('synergy-login-token', 'c94649dd-99fe-4f51-bb6e-11d37f86936f');
   }
 }

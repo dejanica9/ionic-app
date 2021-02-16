@@ -1,0 +1,22 @@
+favorite:root {
+    --ion-color-favorite: #69bb7b;
+    --ion-color-favorite-rgb: 105,187,123;
+    --ion-color-favorite-contrast: #ffffff;
+    --ion-color-favorite-contrast-rgb: 255,255,255;
+    --ion-color-favorite-shade: #5ca56c;
+    --ion-color-favorite-tint: #78c288;
+  }
+
+
+  button:disabled{
+opacity: 0.5;
+  }
+
+ 
+    // .alert-button{
+    //     display:none;
+    //     }
+    
+    [aria-checked=true] .alert-radio-inner {
+      color: red;
+    }

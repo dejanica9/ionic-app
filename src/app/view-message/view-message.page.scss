@@ -38,3 +38,30 @@ h1 {
 p {
   line-height: 22px;
 }
+
+.sun{
+  padding-bottom: 20px;cursor: pointer;
+}
+
+ion-checkbox {
+  --checkmark-color: white;
+  --border-radius: 12px;
+ 
+}
+
+.checkbox-container {
+  position: relative;      
+}
+
+ion-item{
+  height: auto;
+}
+
+
+button:disabled{
+  opacity: 0.5;
+    }
+
+    .marg{
+      margin-right: 0 !important;
+    }

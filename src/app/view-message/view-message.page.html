@@ -1,29 +1,157 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons>
-      <ion-back-button [text]="getBackButtonText()" defaultHref="/"></ion-back-button>
-    </ion-buttons>
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-list-header>
+      <ion-icon [routerLink]="['/home']" style="width: 30px;height: 30px;color:white" name="arrow-back"></ion-icon>
+      <ion-title class="" style="color:white; text-align: left;">Checklist</ion-title>
+      <ion-icon style="width: 30px;height: 30px;float: right;color:white; padding-right: 6px;" name="funnel"></ion-icon>
+      <ion-icon [routerLink]="['/settings-checklists/'+ id]"
+        style="width: 30px;height: 30px;float: right;color:white; padding-right: 6px;" name="settings">
+      </ion-icon>
+
+    </ion-list-header>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" *ngIf="message">
-  <ion-item>
-    <ion-icon name="person-circle" color="primary"></ion-icon>
-    <ion-label class="ion-text-wrap">
-      <h2>
-        {{ message.fromName }}
-        <span class="date">
-          <ion-note>{{ message.date }}</ion-note>
-        </span>
-      </h2>
-      <h3>To: <ion-note>Me</ion-note></h3>
-    </ion-label>
-  </ion-item>
-  
-  <div class="ion-padding">
-    <h1>{{ message.subject }}</h1>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-  </div>
+<ion-content>
+  <ion-list class="row" style="margin-left: 15px;margin-top: 15px;">
+    <ion-item lines="none">
+      <ion-label style="font-weight: 700;font-size: 20px;">{{taskName}}</ion-label>
+
+    </ion-item>
+
+    <div style="color: grey;margin-left: 15px;font-size: 14px;">
+
+      {{taskDesc}}
+
+    </div>
+
+
+    <section *ngFor="let sub of allSubtasks">
+
+      <ion-item-sliding>
+        <ion-item style="margin-top: 7px;" lines="none">
+          <ion-checkbox *ngIf="sub.result ===null || (sub.result !==null && sub.result.na !==true) "
+            [checked]="sub.result !==null &&sub.result.completed===true" class="checkbox-container"
+            (ionChange)="markAsCompleted(sub, $event)" color="danger">
+          </ion-checkbox>
+          <ion-icon class="marg" *ngIf="sub.result!==null&& sub.result.na===true" style="font-size: 22px;"
+            style="color:red;font-size: 22px;" name="remove-circle">
+
+          </ion-icon>
+
+          
+          <ion-label (click)="details(sub.id)" [ngClass]="{'sun': sub.result !==null && sub.result.note !== null}"
+            style="margin-left: 7px">
+            {{sub.name}}
+          </ion-label>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <ion-icon *ngIf="sub.urgent===true" style="color:red;font-size: 20px;" name="information-circle" slot="end">
+          </ion-icon>
+          <ion-icon *ngIf="sub.important===true" style="color:rgb(235, 220, 15);font-size: 20px;margin-left: 0px;"
+            name="star" slot="end"></ion-icon>
+          <ion-badge *ngIf="sub.completeByTime!== '' && sub.completeByTime!== null " color="light"
+            style="font-size: 15px;margin-left: 0px;margin-right: 10px;border-radius: 15px;" slot="end">
+            {{sub.completeByTime}}</ion-badge>
+          <ion-icon *ngIf="sub.result !==null && sub.result.note !== null" name="chatbubbles"
+            style="padding-left: 27px;position: absolute;font-size: 22px;color:gray;margin-top: 10px;margin-left: 9px;">
+          </ion-icon>
+
+
+
+        </ion-item>
+
+
+        <div [id]="sub.id" style="margin-left: 36px;display:none">
+          <ion-label style="color: grey;word-wrap:normal;font-size:13px"> {{sub.description}}</ion-label>
+          <div>
+            <ion-badge *ngIf="sub.result!==null&& sub.result.na===true" color="danger"
+              style="color: white;border-radius: 15px;font-size:10px">Mark
+              as N/A by: {{sub.result.person.userName}} {{sub.result.person.lastName}}
+              at {{sub.result.completedDateTime | date:'MMM d, y, H:mm'}}</ion-badge>
+            <ion-badge *ngIf=" sub.result !==null&& sub.result.completed==true" color="danger"
+              style="color: white;border-radius: 15px;font-size:10px">Marked
+              as completed by: {{sub.result.person.userName}} {{sub.result.person.lastName}}
+              at {{sub.result.completedDateTime | date:'MMM d, y, H:mm'}}</ion-badge>
+          </div>
+
+        </div>
+
+
+
+        <ion-item-options side="end">
+
+          <button ion-button style="padding: 0;margin: 0;background-color: rgb(255, 230, 9);color:white;width: 45px;"
+            (click)="noteDialog(sub)">
+            <ion-icon style="font-size: 24px;color:white" name="chatbubble-outline">
+            </ion-icon>
+            Note
+          </button>
+
+          <button (click)="markAsNA(sub)" ion-button
+            style="padding: 0;margin: 0;background-color: red;color:white;width: 45px;">
+            <ion-icon style="font-size: 24px;color:white" name="remove-circle"></ion-icon>
+            N/A
+          </button>
+
+
+          <button [routerLink]="['/subtask-settings/'+ sub.id]" ion-button
+            style="padding: 0;margin: 0;color:white;width: 45px;">
+            <ion-icon style="font-size: 24px;color:white" name="settings"></ion-icon>
+            Settings
+          </button>
+
+        </ion-item-options>
+      </ion-item-sliding>
+
+
+    </section>
+
+
+
+
+    <ion-item *ngIf="preview" lines="none">
+      <ion-input [(ngModel)]="newSubtask" placeholder="Type a new subtask here"></ion-input>
+      <button style="background-color: transparent;" [disabled]="newSubtask ===''" (click)="addNewSubtask()">
+        <ion-icon style="font-size: 35px;" button color="danger" name="checkbox"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+
+
+
+
+
+  <ion-fab *ngIf="!preview" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="preview=!preview">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-tab-button style="cursor: none;">
+      <ion-icon name="home" color="danger"></ion-icon>
+
+    </ion-tab-button>
+  </ion-toolbar>
+</ion-footer>

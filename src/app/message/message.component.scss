@@ -57,3 +57,37 @@ ion-footer ion-title {
   font-size: 11px;
   font-weight: normal;
 }
+
+ion-item-options > button{
+  width: 59px;
+
+}
+
+.my-custom-class{
+text-align: center;
+}
+
+.buttonCss {
+
+  button.alert-button.exit-button{
+    color: red;
+  }
+
+  button.alert-button.cancel-button{
+    color: green;
+  }
+}
+
+// .alertCustomCss {
+//   color: white; // text color for basic alerts
+//   button {
+//       color: white !important;
+//       background-color: red !important;
+//   }
+//   .alert-message {
+//       color: white; // text color for confirm alerts
+//   }
+//   .alert-wrapper {
+//       background-color: black;
+//   }
+// }

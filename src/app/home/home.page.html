@@ -1,25 +1,71 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Inbox
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-list-header>
+      <ion-icon style="width: 30px;height: 30px;color:white" name="menu"></ion-icon>
+      <ion-title class="" style="color:white; text-align: center;">Checklists</ion-title>
+      <ion-icon style="width: 30px;height: 30px;float: right;color:white; padding-right: 6px;" name="funnel"></ion-icon>
+    </ion-list-header>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">
-        Inbox
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-list>
-    <app-message *ngFor="let message of getMessages()" [message]="message"></app-message>
+
+<ion-content #content [fullscreen]="true">
+
+
+  <div style="text-align: center;margin-top: 13px;">
+    <ion-chip outline color="dark">
+
+      <ion-select color="danger" #select style="font-weight:bold;color:gray" #S
+        (ionChange)="getCurrentDateForOutlet(S.value)" placeholder="Select One">
+        <ion-select-option (selectionChange)="dejana(out.id)" *ngFor="let out of allOutlets" [value]="out.id">
+          <b>{{out.name}}</b>
+        </ion-select-option>
+      </ion-select>
+      <ion-icon style="color:gray" name="location"></ion-icon>
+    </ion-chip>
+  </div>
+
+
+
+
+
+
+  <ion-list style="padding-left: 15px;margin-top: 17px;">
+    <app-message *ngFor="let message of checklists" [message]="message">
+
+    </app-message>
+
   </ion-list>
+
+  <ion-item *ngIf="checklistLabel===true">
+    <ion-input [(ngModel)]="newChecklist" placeholder="Type a new checklist here"></ion-input>
+
+    <button style="background-color: transparent;" [disabled]="newChecklist==''" (click)="addNewChecklist()">
+
+      <ion-icon style="font-size: 35px;" button color="danger" name="checkbox"></ion-icon>
+
+    </button>
+
+
+
+
+  </ion-item>
+
+
+
+
+
+  <ion-fab *ngIf="outletId!=='' && !checklistLabel" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="preview();">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-tab-button style="cursor: none;">
+      <ion-icon name="home" color="danger"></ion-icon>
+
+    </ion-tab-button>
+  </ion-toolbar>
+</ion-footer>
