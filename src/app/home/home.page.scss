@@ -1,22 +1,50 @@
-favorite:root {
-    --ion-color-favorite: #69bb7b;
-    --ion-color-favorite-rgb: 105,187,123;
-    --ion-color-favorite-contrast: #ffffff;
-    --ion-color-favorite-contrast-rgb: 255,255,255;
-    --ion-color-favorite-shade: #5ca56c;
-    --ion-color-favorite-tint: #78c288;
-  }
-
-
-  button:disabled{
+button:disabled{
 opacity: 0.5;
   }
 
- 
-    // .alert-button{
-    //     display:none;
-    //     }
     
     [aria-checked=true] .alert-radio-inner {
       color: red;
+    }
+
+    .icstyle{
+      width: 30px;
+      height: 30px;
+      color:white
+    }
+
+    .title{
+      color:white;
+       text-align: center;
+    }
+
+    .filter{
+      width: 30px;height: 30px;float: right;color:white; padding-right: 6px;
+    }
+
+    .main{
+      text-align: center;margin-top: 13px;
+    }
+
+    .selection{
+      font-weight:bold;color:gray
+    }
+    .col{
+      color:gray
+    }
+
+    .pad{
+      padding-left: 15px;margin-top: 17px;
+    }
+
+    .transparent{
+      background-color: transparent;
+    }
+
+    .text{
+      font-size: 35px;
+    }
+
+    .mouse{
+      cursor: none;
     }

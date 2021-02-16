@@ -1,0 +1,39 @@
+.head{
+    width: 30px;height: 30px;color:white;cursor: pointer;
+}
+
+.titleSty{
+    color:white; text-align: center;
+}
+.transparent{
+    background-color: transparent; 
+}
+.trash{
+    width: 30px;height: 30px;float: right;color:white; padding-right: 6px;
+}
+.funnel{
+    width: 30px;height: 30px;float: right;color:white; padding-right: 6px;
+}
+.lab{
+    color: grey;
+}
+
+.word{
+    word-wrap: break-word;
+}
+
+.desc{
+    color: grey;word-wrap:normal;
+}
+
+.float-text{
+    float: right;
+}
+
+.description-text{
+    color: grey;float: right;
+}
+
+.point{
+    cursor: none;
+}

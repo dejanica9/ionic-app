@@ -9,13 +9,13 @@
 
   <ion-item-options side="end">
 
-    <button [routerLink]="['/settings-checklists/'+ message.id]" ion-button style="padding: 0;margin: 0;color:white">
-      <ion-icon style="font-size: 27px;color:white" name="settings"></ion-icon>
+    <button [routerLink]="['/settings-checklists/'+ message.id]" ion-button class="col">
+      <ion-icon class="let" name="settings"></ion-icon>
       Settings
     </button>
     <button (click)="presentAlertMultipleButtons()" ion-button
-      style="padding: 0;margin: 0;background-color: red;color:white">
-      <ion-icon style="font-size: 27px;color:white" name="trash"></ion-icon>
+      class="but">
+      <ion-icon class="other" name="trash"></ion-icon>
       Delete
     </button>
   </ion-item-options>

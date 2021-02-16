@@ -78,16 +78,18 @@ text-align: center;
   }
 }
 
-// .alertCustomCss {
-//   color: white; // text color for basic alerts
-//   button {
-//       color: white !important;
-//       background-color: red !important;
-//   }
-//   .alert-message {
-//       color: white; // text color for confirm alerts
-//   }
-//   .alert-wrapper {
-//       background-color: black;
-//   }
-// }
+.col{
+  padding: 0;margin: 0;color:white;
+}
+
+.let{
+  font-size: 27px;color:white;
+}
+
+.but{
+  padding: 0;margin: 0;background-color: red;color:white;
+}
+
+.other{
+  font-size: 27px;color:white;
+}

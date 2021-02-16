@@ -1,12 +1,11 @@
 <ion-header>
   <ion-toolbar color="danger">
     <ion-list-header>
-      <ion-icon [routerLink]="[previousUrl]" style="width: 30px;height: 30px;color:white" name="arrow-back"></ion-icon>
-      <ion-title class="" style="color:white; text-align: left;">Task Setup</ion-title>
-      <ion-icon style="width: 30px;height: 30px;float: right;color:white; padding-right: 6px;"
-        (click)="deleteSubtaskDialog()" name="trash">
+      <ion-icon [routerLink]="[previousUrl]" class="arrow" name="arrow-back"></ion-icon>
+      <ion-title class="setup">Task Setup</ion-title>
+      <ion-icon class="trash" (click)="deleteSubtaskDialog()" name="trash">
       </ion-icon>
-      <ion-icon style="width: 30px;height: 30px;float: right;color:white; padding-right: 6px;" name="funnel"></ion-icon>
+      <ion-icon class="funnel" name="funnel"></ion-icon>
     </ion-list-header>
   </ion-toolbar>
 </ion-header>
@@ -20,38 +19,38 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label style="color: grey;" position="stacked">Task Name *</ion-label>
-      <ion-input [(ngModel)]="subtaskName" style="word-wrap: break-word;font-size:13px"></ion-input>
+      <ion-label class="label-text" position="stacked">Task Name *</ion-label>
+      <ion-input [(ngModel)]="subtaskName" class="sty"></ion-input>
     </ion-item>
 
 
     <ion-item text-wrap>
-      <ion-label style="color: grey;word-wrap:normal;" position="stacked" text-wrap>Task Description</ion-label>
+      <ion-label class="descr" position="stacked" text-wrap>Task Description</ion-label>
 
-      <ion-textarea style="padding-bottom: 75px;" [(ngModel)]="description" maxlength="250" class="ion-text-wrap"
+      <ion-textarea class="text-a" [(ngModel)]="description" maxlength="250" class="ion-text-wrap"
         (ionChange)="count()">
       </ion-textarea>
     </ion-item>
 
     <ion-toolbar>
-      <ion-item lines="none" style="float: right;">
+      <ion-item lines="none" class="floats">
 
 
-        <ion-label style="color: grey;float: right;width: 100%;">{{totalLength}}/250</ion-label>
+        <ion-label class="text-d">{{totalLength}}/250</ion-label>
       </ion-item>
     </ion-toolbar>
 
 
 
-    <ion-toolbar style="margin-left: 10px;" lines="none">
+    <ion-toolbar class="marg" lines="none">
 
-      <button (click)="picker.open()" id='vid' [value]="picker.value" style="background-color: transparent;" ion-button>
-        <ion-icon style="margin-right: 7px;font-size: 16px;" name="time-outline">
+      <button (click)="picker.open()" id='vid' [value]="picker.value" class="trans" ion-button>
+        <ion-icon class="timeout" name="time-outline">
 
 
         </ion-icon>
       </button>
-      <button style="background-color: transparent;font-size: 16px;" ion-button>
+      <button class="buttonss" ion-button>
 
         <ion-datetime (ionChange)="dateChange($event)" #picker id="clock" placeholder="--:--" display-format="HH:mm"
           picker-format="HH:mm" [value]="clock">
@@ -60,8 +59,7 @@
 
 
 
-      <ion-icon style="margin-right: 7px;float: right;font-size :16px;color:gray;padding-right: 20px;"
-        name="close-circle"></ion-icon>
+      <ion-icon class="circle" name="close-circle"></ion-icon>
     </ion-toolbar>
 
 
@@ -114,7 +112,7 @@
 
 <ion-footer class="ion-no-border">
   <ion-toolbar>
-    <ion-tab-button style="cursor: none;">
+    <ion-tab-button class="point">
       <ion-icon name="home" color="danger"></ion-icon>
 
     </ion-tab-button>

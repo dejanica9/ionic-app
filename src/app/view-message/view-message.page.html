@@ -1,11 +1,10 @@
 <ion-header>
   <ion-toolbar color="danger">
     <ion-list-header>
-      <ion-icon [routerLink]="['/home']" style="width: 30px;height: 30px;color:white" name="arrow-back"></ion-icon>
-      <ion-title class="" style="color:white; text-align: left;">Checklist</ion-title>
-      <ion-icon style="width: 30px;height: 30px;float: right;color:white; padding-right: 6px;" name="funnel"></ion-icon>
-      <ion-icon [routerLink]="['/settings-checklists/'+ id]"
-        style="width: 30px;height: 30px;float: right;color:white; padding-right: 6px;" name="settings">
+      <ion-icon [routerLink]="['/home']" class="back" name="arrow-back"></ion-icon>
+      <ion-title class="check">Checklist</ion-title>
+      <ion-icon class="funnel" name="funnel"></ion-icon>
+      <ion-icon [routerLink]="['/settings-checklists/'+ id]" class="settings" name="settings">
       </ion-icon>
 
     </ion-list-header>
@@ -13,13 +12,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-list class="row" style="margin-left: 15px;margin-top: 15px;">
+  <ion-list class="row itemss">
     <ion-item lines="none">
-      <ion-label style="font-weight: 700;font-size: 20px;">{{taskName}}</ion-label>
+      <ion-label class="name">{{taskName}}</ion-label>
 
     </ion-item>
 
-    <div style="color: grey;margin-left: 15px;font-size: 14px;">
+    <div class="descr">
 
       {{taskDesc}}
 
@@ -29,19 +28,18 @@
     <section *ngFor="let sub of allSubtasks">
 
       <ion-item-sliding>
-        <ion-item style="margin-top: 7px;" lines="none">
+        <ion-item class="mar" lines="none">
           <ion-checkbox *ngIf="sub.result ===null || (sub.result !==null && sub.result.na !==true) "
             [checked]="sub.result !==null &&sub.result.completed===true" class="checkbox-container"
             (ionChange)="markAsCompleted(sub, $event)" color="danger">
           </ion-checkbox>
-          <ion-icon class="marg" *ngIf="sub.result!==null&& sub.result.na===true" style="font-size: 22px;"
-            style="color:red;font-size: 22px;" name="remove-circle">
+          <ion-icon class="marg" *ngIf="sub.result!==null&& sub.result.na===true" class="redd" name="remove-circle">
 
           </ion-icon>
 
-          
+
           <ion-label (click)="details(sub.id)" [ngClass]="{'sun': sub.result !==null && sub.result.note !== null}"
-            style="margin-left: 7px">
+            class="size-t">
             {{sub.name}}
           </ion-label>
 
@@ -63,15 +61,13 @@
 
 
 
-          <ion-icon *ngIf="sub.urgent===true" style="color:red;font-size: 20px;" name="information-circle" slot="end">
+          <ion-icon *ngIf="sub.urgent===true" class="info" name="information-circle" slot="end">
           </ion-icon>
-          <ion-icon *ngIf="sub.important===true" style="color:rgb(235, 220, 15);font-size: 20px;margin-left: 0px;"
-            name="star" slot="end"></ion-icon>
-          <ion-badge *ngIf="sub.completeByTime!== '' && sub.completeByTime!== null " color="light"
-            style="font-size: 15px;margin-left: 0px;margin-right: 10px;border-radius: 15px;" slot="end">
+          <ion-icon *ngIf="sub.important===true" class="note" name="star" slot="end"></ion-icon>
+          <ion-badge *ngIf="sub.completeByTime!== '' && sub.completeByTime!== null " color="light" class="badge1"
+            slot="end">
             {{sub.completeByTime}}</ion-badge>
-          <ion-icon *ngIf="sub.result !==null && sub.result.note !== null" name="chatbubbles"
-            style="padding-left: 27px;position: absolute;font-size: 22px;color:gray;margin-top: 10px;margin-left: 9px;">
+          <ion-icon *ngIf="sub.result !==null && sub.result.note !== null" name="chatbubbles" class="chat">
           </ion-icon>
 
 
@@ -79,15 +75,13 @@
         </ion-item>
 
 
-        <div [id]="sub.id" style="margin-left: 36px;display:none">
-          <ion-label style="color: grey;word-wrap:normal;font-size:13px"> {{sub.description}}</ion-label>
+        <div [id]="sub.id" class="dis">
+          <ion-label class="taskDe"> {{sub.description}}</ion-label>
           <div>
-            <ion-badge *ngIf="sub.result!==null&& sub.result.na===true" color="danger"
-              style="color: white;border-radius: 15px;font-size:10px">Mark
+            <ion-badge *ngIf="sub.result!==null&& sub.result.na===true" color="danger" class="na">Mark
               as N/A by: {{sub.result.person.userName}} {{sub.result.person.lastName}}
               at {{sub.result.completedDateTime | date:'MMM d, y, H:mm'}}</ion-badge>
-            <ion-badge *ngIf=" sub.result !==null&& sub.result.completed==true" color="danger"
-              style="color: white;border-radius: 15px;font-size:10px">Marked
+            <ion-badge *ngIf=" sub.result !==null&& sub.result.completed==true" color="danger" class="complete">Marked
               as completed by: {{sub.result.person.userName}} {{sub.result.person.lastName}}
               at {{sub.result.completedDateTime | date:'MMM d, y, H:mm'}}</ion-badge>
           </div>
@@ -98,23 +92,20 @@
 
         <ion-item-options side="end">
 
-          <button ion-button style="padding: 0;margin: 0;background-color: rgb(255, 230, 9);color:white;width: 45px;"
-            (click)="noteDialog(sub)">
-            <ion-icon style="font-size: 24px;color:white" name="chatbubble-outline">
+          <button ion-button class="dialogue" (click)="noteDialog(sub)">
+            <ion-icon class="bubble" name="chatbubble-outline">
             </ion-icon>
             Note
           </button>
 
-          <button (click)="markAsNA(sub)" ion-button
-            style="padding: 0;margin: 0;background-color: red;color:white;width: 45px;">
-            <ion-icon style="font-size: 24px;color:white" name="remove-circle"></ion-icon>
+          <button (click)="markAsNA(sub)" ion-button class="removecircle">
+            <ion-icon class="na-na" name="remove-circle"></ion-icon>
             N/A
           </button>
 
 
-          <button [routerLink]="['/subtask-settings/'+ sub.id]" ion-button
-            style="padding: 0;margin: 0;color:white;width: 45px;">
-            <ion-icon style="font-size: 24px;color:white" name="settings"></ion-icon>
+          <button [routerLink]="['/subtask-settings/'+ sub.id]" ion-button class="settings-a">
+            <ion-icon class="let" name="settings"></ion-icon>
             Settings
           </button>
 
@@ -129,8 +120,8 @@
 
     <ion-item *ngIf="preview" lines="none">
       <ion-input [(ngModel)]="newSubtask" placeholder="Type a new subtask here"></ion-input>
-      <button style="background-color: transparent;" [disabled]="newSubtask ===''" (click)="addNewSubtask()">
-        <ion-icon style="font-size: 35px;" button color="danger" name="checkbox"></ion-icon>
+      <button class="no" [disabled]="newSubtask ===''" (click)="addNewSubtask()">
+        <ion-icon class="button1" button color="danger" name="checkbox"></ion-icon>
       </button>
     </ion-item>
   </ion-list>
@@ -149,7 +140,7 @@
 
 <ion-footer class="ion-no-border">
   <ion-toolbar>
-    <ion-tab-button style="cursor: none;">
+    <ion-tab-button class="cursor-s">
       <ion-icon name="home" color="danger"></ion-icon>
 
     </ion-tab-button>
